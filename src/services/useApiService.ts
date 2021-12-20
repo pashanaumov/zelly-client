@@ -21,13 +21,6 @@ export function useApi() {
       Object.assign(defaultHeaders, headers);
     }
 
-    console.log({
-      method,
-      url: route,
-      headers: defaultHeaders,
-      data: body,
-    });
-
     const response = await axios({
       method,
       url: route,

@@ -1,19 +1,27 @@
-import React from 'react';
-import { useAuthService } from './services/AuthService';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { runFetchData } from './redux/sagas/authSaga';
+import { RootState } from './redux/store';
+import { sagaActions } from './redux/sagas/sagaActions';
 
 const LOGIN = 'p.b.naumov@gmail.com';
 const PASSWORD = 'pavliknaumov12';
 
 export const App = () => {
-  const { login } = useAuthService();
+  const dispatch = useDispatch();
+  const userToken = useSelector((state: RootState) => state.auth.authenticated);
 
   async function onLogin() {
-    await login(LOGIN, PASSWORD);
+    dispatch(runFetchData({ email: LOGIN, password: PASSWORD }));
   }
 
-  return (
-    <>
-      <button onClick={onLogin}>Login me</button>
-    </>
-  );
+  async function onLogout() {
+    dispatch({ type: sagaActions.LOGOUT_USER });
+  }
+
+  useEffect(() => {
+    console.log({ userToken });
+  }, [userToken]);
+
+  return <>{<button onClick={userToken ? onLogout : onLogin}>{userToken ? 'Logout' : 'Login'} me</button>}</>;
 };

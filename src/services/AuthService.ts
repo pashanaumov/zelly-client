@@ -13,6 +13,7 @@ export function useAuthService() {
       if (response.token) {
         localStorage.setItem('user', response.token);
       }
+      return response;
     });
   }
 
@@ -26,6 +27,7 @@ export function useAuthService() {
       if (response.token) {
         localStorage.setItem('user', response.token);
       }
+      return response;
     });
   }
 
