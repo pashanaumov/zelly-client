@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { runFetchData } from './redux/sagas/authSaga';
 import { RootState } from './redux/store';
 import { sagaActions } from './redux/sagas/sagaActions';
-import { FirebaseFetcher } from './testComponents/FirebaseFetcher';
+
 import './App.css';
-import { Link } from 'react-router-dom';
+import { usePrevious } from './hooks/usePrevious';
 
 const LOGIN = 'p.b.naumov@gmail.com';
 const PASSWORD = 'pavliknaumov12';
 
 export const App = () => {
-  const store = useStore();
   const dispatch = useDispatch();
+  let navigate = useNavigate();
 
   const userToken = useSelector((state: RootState) => state.auth.authenticated);
   const user = useSelector((state: RootState) => state.user.user);
@@ -25,9 +27,13 @@ export const App = () => {
     dispatch({ type: sagaActions.LOGOUT_USER });
   }
 
-  useEffect(() => {
-    console.log({ userToken });
-  }, [userToken]);
+  useEffect(() => {}, [userToken]);
+
+  const prevToken = usePrevious(userToken);
+
+  if (!prevToken && userToken) {
+    navigate('/');
+  }
 
   const Body = () => {
     if (!user) {
@@ -65,7 +71,7 @@ export const App = () => {
           paddingBottom: '1rem',
         }}
       >
-        <Link to="/login">Login</Link> | <Link to="/fetcher">Fetcher</Link> | <Link to={'/register'}>Register</Link>
+        <Link to="/login">Login</Link> | <Link to="/fetcher">Fetcher</Link> | <Link to={'/register'}>Register</Link> | <Link to={'/fetcher2'}>Fetcher 2</Link>
       </nav>
     </div>
   );

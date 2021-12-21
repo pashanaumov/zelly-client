@@ -4,14 +4,16 @@ import { App } from '../App';
 import { LoginPage } from './LoginPage';
 import { FirebaseFetcher } from '../testComponents/FirebaseFetcher';
 import { RegisterPage } from './RegisterPage';
+import { FirestoreComp } from '../testComponents/FirestoreComp';
 
 export const MainAppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="login" element={<LoginPage />} />
-      <Route path={'register'} element={<RegisterPage />} />
+      <Route path="register" element={<RegisterPage />} />
       <Route path="fetcher" element={<FirebaseFetcher />} />
+      <Route path="fetcher2" element={<FirestoreComp />} />
     </Routes>
   );
 };

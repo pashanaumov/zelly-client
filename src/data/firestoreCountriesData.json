@@ -1,0 +1,118 @@
+[
+  {
+    "country": "Austria",
+    "intensity": 0.085
+  },
+  {
+    "country": "Belgium",
+    "intensity": 0.17
+  },
+  {
+    "country": "Bulgaria",
+    "intensity": 0.47
+  },
+  {
+    "country": "Croatia",
+    "intensity": 0.21
+  },
+  {
+    "country": "Cyprus",
+    "intensity": 0.677
+  },
+  {
+    "country": "Czechia",
+    "intensity": 0.513
+  },
+  {
+    "country": "Denmark",
+    "intensity": 0.166
+  },
+  {
+    "country": "Estonia",
+    "intensity": 0.819
+  },
+  {
+    "country": "European Union",
+    "intensity": 0.296
+  },
+  {
+    "country": "Finland",
+    "intensity": 0.113
+  },
+  {
+    "country": "France",
+    "intensity": 0.059
+  },
+  {
+    "country": "Germany",
+    "intensity": 0.441
+  },
+  {
+    "country": "Greece",
+    "intensity": 0.623
+  },
+  {
+    "country": "Hungary",
+    "intensity": 0.26
+  },
+  {
+    "country": "Ireland",
+    "intensity": 0.425
+  },
+  {
+    "country": "Italy",
+    "intensity": 0.256
+  },
+  {
+    "country": "Latvia",
+    "intensity": 0.105
+  },
+  {
+    "country": "Lithuania",
+    "intensity": 0.018
+  },
+  {
+    "country": "Luxembourg",
+    "intensity": 0.219
+  },
+  {
+    "country": "Malta",
+    "intensity": 0.648
+  },
+  {
+    "country": "Netherlands",
+    "intensity": 0.505
+  },
+  {
+    "country": "Poland",
+    "intensity": 0.773
+  },
+  {
+    "country": "Portugal",
+    "intensity": 0.325
+  },
+  {
+    "country": "Romania",
+    "intensity": 0.306
+  },
+  {
+    "country": "Slovakia",
+    "intensity": 0.132
+  },
+  {
+    "country": "Slovenia",
+    "intensity": 0.254
+  },
+  {
+    "country": "Spain",
+    "intensity": 0.265
+  },
+  {
+    "country": "Sweden",
+    "intensity": 0.013
+  },
+  {
+    "country": "UnitedKingdom",
+    "intensity": 0.281
+  }
+]
