@@ -14,3 +14,5 @@ export interface UserResponse {
   email: UserEmail;
   token: UserToken;
 }
+
+export type ZellyUser = UserResponse;

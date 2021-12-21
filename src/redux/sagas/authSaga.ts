@@ -1,9 +1,10 @@
-import {all, call, put, takeEvery } from 'redux-saga/effects';
+import { all, call, put, takeEvery } from 'redux-saga/effects';
 import { sagaActions } from './sagaActions';
 import { useAuthService } from '../../services/AuthService';
 import { UserResponse } from '../../types/Auth/LoginResponse';
 import { UserEmail, UserPassword } from '../../types/Utility/User';
 import { authUser } from '../authSlice';
+import { setUser } from '../userSlice';
 
 export type LoginUserPayload = {
   type: string;
@@ -18,6 +19,7 @@ function* loginUser(payload: LoginUserPayload) {
     const user: UserResponse = yield call(() => login(email, password));
     if (user.token) {
       yield put(authUser(user.token));
+      yield put(setUser({ user }));
     }
   } catch (e) {
     console.log(e);
@@ -30,6 +32,7 @@ export function* watchloginUser() {
 
 function* logoutUser() {
   yield put(authUser(null));
+  yield put(setUser({ user: null }));
 }
 
 export function* watchLogoutUser() {
