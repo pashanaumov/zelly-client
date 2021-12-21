@@ -7,7 +7,7 @@ import { authUser } from '../authSlice';
 import { setUser } from '../userSlice';
 
 export type LoginUserPayload = {
-  type: string;
+  type: keyof typeof sagaActions;
   password: UserPassword;
   email: UserEmail;
 };

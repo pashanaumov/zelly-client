@@ -4,6 +4,8 @@ import { runFetchData } from './redux/sagas/authSaga';
 import { RootState } from './redux/store';
 import { sagaActions } from './redux/sagas/sagaActions';
 import { FirebaseFetcher } from './testComponents/FirebaseFetcher';
+import './App.css';
+import { Link } from 'react-router-dom';
 
 const LOGIN = 'p.b.naumov@gmail.com';
 const PASSWORD = 'pavliknaumov12';
@@ -27,38 +29,44 @@ export const App = () => {
     console.log({ userToken });
   }, [userToken]);
 
-  if (!userToken) {
-    return (
-      <div>
-        <button onClick={onLogin}>Log In</button>
-      </div>
-    );
-  }
+  const Body = () => {
+    if (!user) {
+      return <></>;
+    }
 
-  if (user === null) {
-    return <></>;
-  }
+    return (
+      <>
+        <div
+          style={{
+            padding: 8,
+            border: '1px solid black',
+            width: '300px',
+          }}
+        >
+          <div>
+            <button onClick={onLogout}>Log Out</button>
+          </div>
+          <p>{user.email}</p>
+          <p>{user.id}</p>
+          <p>{user.country}</p>
+          <p>{user.language}</p>
+        </div>
+        <div>{/*<FirebaseFetcher />*/}</div>
+      </>
+    );
+  };
 
   return (
-    <>
-      <div
+    <div className={'App'}>
+      <h1>Welcome to Zelly</h1>
+      <nav
         style={{
-          padding: 8,
-          border: '1px solid black',
-          width: '300px',
+          borderBottom: 'solid 1px',
+          paddingBottom: '1rem',
         }}
       >
-        <div>
-          <button onClick={onLogout}>Log Out</button>
-        </div>
-        <p>{user.email}</p>
-        <p>{user.id}</p>
-        <p>{user.country}</p>
-        <p>{user.language}</p>
-      </div>
-      <div>
-        <FirebaseFetcher />
-      </div>
-    </>
+        <Link to="/login">Login</Link> | <Link to="/fetcher">Fetcher</Link> | <Link to={'/register'}>Register</Link>
+      </nav>
+    </div>
   );
 };

@@ -39,11 +39,22 @@ export function FirebaseFetcher() {
   }, [users]);
 
   return (
-    <div>
+    <div
+      style={{
+        padding: 8,
+        border: '1px solid black',
+        width: '300px',
+      }}
+    >
       {Boolean(users.length) &&
         users.map((user, id) => {
           return (
-            <div key={id}>
+            <div
+              key={id}
+              style={{
+                border: '1px solid black',
+              }}
+            >
               <p>{user.userId}</p>
               <p>{user.name}</p>
               <p>{user.age}</p>

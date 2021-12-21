@@ -24,6 +24,7 @@ export function useAuthService() {
   function register(body: RegisterRequestBody) {
     const { email, password, language, country } = body;
     return POST<UserResponse>(registerUrl, { email, password, language, country }).then((response) => {
+      console.log('registration', response);
       if (response.token) {
         localStorage.setItem('user', response.token);
       }
