@@ -1,36 +1,35 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { useDispatch } from 'react-redux';
 import { runFetchData } from '../redux/sagas/authSaga';
-import { sagaActions } from '../redux/sagas/sagaActions';
-
-const LOGIN = 'p.b.naumov@gmail.com';
-const PASSWORD = 'pavliknaumov12';
+import { UserEmail, UserPassword } from '../types/Utility/User';
+import { useFormik } from 'formik';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
 
-  const userToken = useSelector((state: RootState) => state.auth.authenticated);
-
-  async function onLogin() {
-    dispatch(runFetchData({ email: LOGIN, password: PASSWORD }));
+  async function onLogin({ email, password }: { email: UserEmail; password: UserPassword }) {
+    dispatch(runFetchData({ email, password }));
   }
 
-  async function onLogout() {
-    dispatch({ type: sagaActions.LOGOUT_USER });
-  }
-
-  if (!userToken) {
-    return (
-      <div>
-        <button onClick={onLogin}>Login</button>
-      </div>
-    );
-  }
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: async (values) => {
+      await onLogin({ ...values });
+    },
+  });
 
   return (
-    <div>
-      <button onClick={onLogout}>Logout</button>
-    </div>
+    <form onSubmit={formik.handleSubmit}>
+      <label htmlFor="email">Email Address</label>
+      <input id="email" name="email" type="email" onChange={formik.handleChange} value={formik.values.email} />
+
+      <label htmlFor="password">Password</label>
+      <input id="password" name="password" type="password" onChange={formik.handleChange} value={formik.values.password} />
+
+      <button type="submit">Submit</button>
+    </form>
   );
 };
