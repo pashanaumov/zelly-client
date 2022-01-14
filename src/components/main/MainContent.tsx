@@ -2,13 +2,20 @@ import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
+import { theName } from '@core/index';
+
 interface Props {}
 
 export const MainContent: FC<Props> = () => {
   const user = useSelector((state: RootState) => state.user.user);
 
   if (!user) {
-    return <></>;
+    return (
+      <>
+        Похуй сколько мне лет
+        {theName}
+      </>
+    );
   }
 
   return (
